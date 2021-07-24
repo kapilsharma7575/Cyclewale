@@ -1,0 +1,47 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+html{
+    height: 100%;
+}
+
+.button.label{
+    color: black;
+    margin: auto auto ;
+}
+
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('https://wallpaperaccess.com/full/1267580.jpg');
+    background-position: center;
+    background-size: cover;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}
+
+.label{
+    color:white;
+}
+
+form{
+    padding: 15px ;
+    background-color: rgba(74,74, 77, 0.40);
+}
+
+.navbar{
+    top:0;
+    width:100%;
+    position:fixed;
+}
+
+.salutation {
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+}

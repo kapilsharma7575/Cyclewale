@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>User Home</title>
+    <script src='https://unpkg.com/@turf/turf/turf.min.js' th:if="${currentUser.isActive() == false}"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/userHomePage.css" />
+</head>
+
+<body>
+
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+
+    <div class="navbar-start">
+        <h1 class="navbar-item salutation">
+            <span> Hi there,&nbsp;</span><span th:text="${currentUser.getName()}"> </span>
+        </h1>
+    </div>
+
+    <div class="navbar-end">
+        <div class="navbar-item">
+                <a th:href="@{/logout}" class="button is-light">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                </a>
+        </div>
+    </div>
+
+</nav>
+
+<div id = "screen">
+    <div id='map'></div>
+    <div class="askForLocation" th:if="${currentUser.isActive() == false}">
+        <p class="askForLocationText">
+            Please grant access to your location to go ahead!
+        </p>
+        <br>
+        <button class="button askForLocation-btn">OK</button>
+    </div>
+
+    <div class="chooseDestination" style="display: none" th:if="${currentUser.isActive() == false}">
+        <div class="chooseDestination-top">
+
+            <div id="searchLogs">
+                <ul id="searchLogsList">
+                </ul>
+            </div>
+            <br>
+            <p class="tellNearestStand"></p>
+            <p class="distanceToStand"> </p>
+        </div>
+
+        <div></div>
+
+        <div class="chooseDestination-bottom" style="display: none">
+            <h2 id="destination-select-text">Select your Destination</h2>
+            <br>
+            <div id = "destination-select-parent">
+                <div class="select" >
+                    <select class="destination-select"></select>
+                </div>
+                <br>
+                <button class="button is-rounded show-route-btn">Show route</button>
+            </div>
+            <br>
+            <p class="distanceToDestination"></p>
+            <button  class="button is-success is-outlined" id="start-journey"
+                    th:onclick = "|startJourney();|">
+                Start
+            </button>
+        </div>
+    </div>
+
+    <div class="stopJourney" th:if="${currentUser.isActive() == true}">
+        <p>
+            <ul id="journeyData">
+                <li>Origin: <span th:text="${journey.getOrigin()}"> </span></li>
+                <li>Destination: <span th:text="${journey.getDestination()}"> </span></li>
+                <li>Cycle Number: <span th:text="${journey.getCycleId()}"> </span></li>
+            </ul>
+        </p>
+        <br>
+        <br>
+        <button class="button is-danger is-outlined stopJourney-btn ">STOP!</button>
+    </div>
+
+</div>
+<script type="text/javascript" th:src="@{/js/MapBoxScript.js}"></script>
+
+<script th:src="@{/js/SearchNearestCycle.js}" th:if="${currentUser.isActive() == false}"></script>
+<script th:src="@{/js/stopJourney.js}" th:if="${currentUser.isActive() == true}"></script>
+</body>
+</html>

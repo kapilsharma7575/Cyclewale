@@ -1,0 +1,43 @@
+HTML{
+    height: 100%;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    height: 100%;
+    background: url('../img/HomePage.jpg') no-repeat center center/cover;
+}
+
+.salutation{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.landing-inner {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.lead {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.x-large {
+    font-size: 3rem;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+}
